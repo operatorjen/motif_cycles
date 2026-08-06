@@ -1,0 +1,29 @@
+name: motif-cycles
+
+services:
+  motif-cycles:
+    build: .
+    ports:
+      - "127.0.0.1:${MOTIF_CYCLES_PORT:-8002}:${MOTIF_CYCLES_PORT:-8002}"
+    environment:
+      MOTIF_CYCLES_HOST: 0.0.0.0
+      MOTIF_CYCLES_PORT: ${MOTIF_CYCLES_PORT:-8002}
+      MOTIF_CYCLES_WORKSPACE: /app/workspace
+      MOTIF_CYCLES_TIMEOUT_SECONDS: ${MOTIF_CYCLES_TIMEOUT_SECONDS:-600}
+      MOTIF_FEEDBACK_URL: ${MOTIF_FEEDBACK_URL:-http://host.docker.internal:8000}
+      MOTIF_FOLDING_URL: ${MOTIF_FOLDING_URL:-http://host.docker.internal:8001}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - motif-cycles-data:/app/workspace
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+
+volumes:
+  motif-cycles-data:
