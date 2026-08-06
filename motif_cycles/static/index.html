@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motif Cycles — Feedback → Folding → Return</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <header class="masthead">
+    <div>
+      <h1>MOTIF (FEEDBACK → FOLDING → RETURN)&nbsp;↻</h1>
+      <p class="subtitle">Move from a recurring pattern to optional interventions, a human choice, and an observable return.</p>
+    </div>
+    <div class="connections" id="connections" aria-live="polite"></div>
+  </header>
+
+  <main class="shell">
+    <aside class="round-sidebar" aria-label="Round history">
+      <div class="sidebar-heading">
+        <span>CYCLES</span>
+        <button id="new-round" type="button" class="quiet">NEW</button>
+      </div>
+      <div id="round-list" class="round-list"></div>
+    </aside>
+
+    <section class="workspace">
+      <div class="workflow" id="workflow">
+        <form id="round-form" class="step-panel">
+          <div class="step-heading"><span>1</span><div><strong>Frame a cycle</strong><small>Choose the live material and the relation to transform.</small></div></div>
+          <label>Title<input name="title" required maxlength="120" placeholder="A short name for this inquiry"></label>
+          <label>Inquiry<textarea name="inquiry" required maxlength="12000" rows="4" placeholder="What relation should this round transform?"></textarea></label>
+          <div class="field-pair">
+            <label>Feedback project<select name="feedback_project_id" id="feedback-project" required></select></label>
+            <label>Folding project<select name="folding_project_id" id="folding-project" required></select></label>
+          </div>
+          <div class="selection-block">
+            <div><strong>Motifs and checkpoints</strong><small>Select what matters; leave motifs empty to use established motifs.</small></div>
+            <div id="motif-options" class="check-grid"><span class="empty">Choose a Feedback project.</span></div>
+            <div id="checkpoint-options" class="check-grid"></div>
+          </div>
+          <label>Human note <span class="optional">optional</span><textarea name="human_note" maxlength="4000" rows="2" placeholder="Why does this matter now? What should not be lost?"></textarea></label>
+          <button type="submit" class="primary">START CYCLE</button>
+        </form>
+
+        <section id="active-step" class="step-panel hidden" aria-live="polite"></section>
+      </div>
+
+      <section class="map-area">
+        <div class="map-heading">
+          <div><p class="eyebrow">LIVE SCHEMATIC</p><h2 id="map-title">No cycle selected</h2></div>
+          <div id="map-actions" class="map-actions"></div>
+        </div>
+        <div class="legend">
+          <span><i class="actual"></i> actual path</span>
+          <span><i class="option"></i> available option</span>
+          <span><i class="human"></i> human gate</span>
+        </div>
+        <div id="graph" class="graph" role="img" aria-label="Round execution and optionality graph"></div>
+        <div id="node-detail" class="node-detail">Select a node to inspect its role and provenance.</div>
+        <div id="analysis" class="analysis-strip"></div>
+      </section>
+    </section>
+  </main>
+  <div id="notice" class="notice hidden" role="status"></div>
+  <script src="/assets/app.js"></script>
+</body>
+</html>
