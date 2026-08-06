@@ -80,3 +80,7 @@ ruff check .
 node --check motif_cycles/static/app.js
 docker compose config --quiet
 ```
+
+## License
+
+MIT. See [LICENSE](LICENSE).
